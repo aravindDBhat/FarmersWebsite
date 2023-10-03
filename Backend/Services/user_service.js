@@ -1,5 +1,4 @@
-const User = require("../models/users");
-console.log("user : ", User);
+const User = require("../models/usermodel");
 async function validateUser(req, res) {
   const { id, name, email, password } = req.body;
   try {

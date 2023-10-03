@@ -3,7 +3,7 @@ const bodyparser = require("body-parser");
 const Core = require("cores");
 const mongoose = require("mongoose");
 const Dotenv = require("dotenv");
-const userService = require("./Routes/user");
+const userService = require("./Routes/user.routes");
 Dotenv.config();
 const app = Express();
 app.use(Express.json());
