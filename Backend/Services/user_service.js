@@ -1,4 +1,9 @@
 const User = require("../models/usermodel");
+const otpGenerator = require("otp-generator");
+const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
+dotenv.config();
+
 async function validateUser(req, res) {
   const { id, name, email, password } = req.body;
   try {
@@ -48,12 +53,81 @@ async function validateUser(req, res) {
   }
 }
 
-async function getUsers() {
-  const data = await User.find({});
-  return data;
+async function otpGenerate() {
+  const otp = await otpGenerator.generate(6, {
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+  return otp;
+}
+
+async function otpSender(req, res) {
+  try {
+    const { email } = req.body;
+    const transporter = nodemailer.createTransport({
+      server: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
+      },
+    });
+    const info = await transporter.sendMail({
+      from: "mitrakrushika02@gmail.com",
+      to: email,
+      subject: "OTP for email verification",
+      text: "To verify your account, please enter the following verification code:", // plain text body
+      html: `To verify your account, please enter the following verification code:<br><br>Your OTP is  <b>${await otpGenerate()} </b><br><br>
+   The verification code expires in 2 minutes. If you do not request this code, please ignore this message. `, // html body
+    });
+    return {
+      StatusCode: 200,
+      message: "Success",
+    };
+  } catch (error) {
+    return {
+      StatusCode: 400,
+      message: error.message,
+    };
+  }
+}
+
+async function getUsers(req, res) {
+  try {
+    const { email, password } = req.body;
+    const data = await User.findOne({ email });
+    if (data[0]) {
+      console.log("wyyyyyyy");
+      if (email === data[0].email && password === data[0].password) {
+        return {
+          StatusCode: 200,
+          msg: "Logged in",
+        };
+      } else {
+        return {
+          StatusCode: 400,
+          msg: "Wrong Userid and Password",
+        };
+      }
+    } else {
+      return {
+        StatusCode: 400,
+        msg: "Wrong Userid and Password",
+      };
+    }
+  } catch (error) {
+    return res.json({
+      StatusCode: 400,
+      msg: error.message,
+    });
+  }
 }
 
 module.exports = {
   getUsers,
   validateUser,
+  otpSender,
 };

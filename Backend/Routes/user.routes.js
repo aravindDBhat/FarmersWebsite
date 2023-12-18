@@ -30,4 +30,32 @@ Router.post("/signup", async (req, res) => {
   }
 });
 
+Router.post("/signin", async (req, res) => {
+  try {
+    const msg = await userService.getUsers(req, res);
+    return res.json({
+      msg,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.json({
+      msg: error.message,
+    });
+  }
+});
+
+Router.post("/EmailVerification", async (req, res) => {
+  try {
+    const data = await userService.otpSender(req, res);
+
+    return res.json({
+      msg: data,
+    });
+  } catch (error) {
+    res.json({
+      msg: error.message,
+    });
+  }
+});
+
 module.exports = Router;

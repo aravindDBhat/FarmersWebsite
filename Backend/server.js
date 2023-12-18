@@ -14,7 +14,7 @@ app.use(
   })
 );
 mongoose
-  .connect(process.env.MONGODB_URL, {
+  .connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
