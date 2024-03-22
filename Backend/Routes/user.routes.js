@@ -17,6 +17,7 @@ Router.get("/", async (req, res) => {
 });
 
 Router.post("/signup", async (req, res) => {
+  console.log(req.body);
   try {
     const msg = await userService.validateUser(req, res);
     return res.json({
@@ -31,8 +32,12 @@ Router.post("/signup", async (req, res) => {
 });
 
 Router.post("/signin", async (req, res) => {
+  console.log(req.body.email);
+  console.log(req.body.password);
+
   try {
     const msg = await userService.getUsers(req, res);
+    console.log("msg is : ", msg);
     return res.json({
       msg,
     });
@@ -46,6 +51,7 @@ Router.post("/signin", async (req, res) => {
 
 Router.post("/EmailVerification", async (req, res) => {
   try {
+    console.log(req.body);
     const data = await userService.otpSender(req, res);
 
     return res.json({

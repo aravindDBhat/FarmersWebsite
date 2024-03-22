@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 async function validateUser(req, res) {
-  const { id, name, email, password } = req.body;
+  const { id, name, email, number, password } = req.body;
   try {
     if (!name) {
       return {
@@ -17,6 +17,12 @@ async function validateUser(req, res) {
       return {
         StatusCode: 400,
         message: "Please enter the Email",
+      };
+    }
+    if (!number) {
+      return {
+        StatusCode: 400,
+        message: "Please enter the Number",
       };
     }
     if (!password) {
@@ -36,6 +42,7 @@ async function validateUser(req, res) {
         id,
         name,
         email,
+        number,
         password,
       });
       await newUser.save();
@@ -48,7 +55,7 @@ async function validateUser(req, res) {
     console.log(error.message);
     return res.json({
       StatusCode: 400,
-      message: error.message,
+      msg: error.message,
     });
   }
 }
@@ -65,6 +72,7 @@ async function otpGenerate() {
 async function otpSender(req, res) {
   try {
     const { email } = req.body;
+    const OTP = await otpGenerate();
     const transporter = nodemailer.createTransport({
       server: "gmail",
       host: "smtp.gmail.com",
@@ -80,12 +88,13 @@ async function otpSender(req, res) {
       to: email,
       subject: "OTP for email verification",
       text: "To verify your account, please enter the following verification code:", // plain text body
-      html: `To verify your account, please enter the following verification code:<br><br>Your OTP is  <b>${await otpGenerate()} </b><br><br>
+      html: `To verify your account, please enter the following verification code:<br><br>Your OTP is  <b>${OTP} </b><br><br>
    The verification code expires in 2 minutes. If you do not request this code, please ignore this message. `, // html body
     });
     return {
       StatusCode: 200,
       message: "Success",
+      otp: OTP,
     };
   } catch (error) {
     return {
@@ -99,9 +108,8 @@ async function getUsers(req, res) {
   try {
     const { email, password } = req.body;
     const data = await User.findOne({ email });
-    if (data[0]) {
-      console.log("wyyyyyyy");
-      if (email === data[0].email && password === data[0].password) {
+    if (data) {
+      if (email === data.email && password === data.password) {
         return {
           StatusCode: 200,
           msg: "Logged in",

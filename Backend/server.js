@@ -1,6 +1,6 @@
 const Express = require("express");
 const bodyparser = require("body-parser");
-const Core = require("cores");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const Dotenv = require("dotenv");
 const userService = require("./Routes/user.routes");
@@ -13,6 +13,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 mongoose
   .connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true,
@@ -26,6 +27,6 @@ mongoose
   });
 app.use("/api/user", userService);
 
-app.listen(3000, () => {
+app.listen(4000, () => {
   console.log("server running on port 3000");
 });

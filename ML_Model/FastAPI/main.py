@@ -128,16 +128,15 @@ CLASS_NAMES=['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rus
              'Tomato___healthy']
 
 
-@app.get("/ping")
-async def ping():
-    return "hello"
 @app.post("/predict")
 async def predict(
     file: UploadFile = File(...)
 ):
     
     image = await file.read()
+    print("type is :",type(image))
     image = Image.open(BytesIO(image)).convert('RGB')
+    print("type is :",type(image))
     print(" before : ", image)
     image=image.resize((256,256))
 
@@ -151,12 +150,7 @@ async def predict(
     
     image=img_tensor.unsqueeze(0)
     yb = model(image)
-    # Pick index with highest probability
     _, preds  = torch.max(yb, dim=1)
-    # with torch.no_grad():
-    #     output = model(image)
-  
-    # preds  = torch.max(output, dim=1)
     print("pred is : ",preds[0].item())
     predicted_class =  CLASS_NAMES[preds[0].item()]
 
