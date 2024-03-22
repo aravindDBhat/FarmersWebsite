@@ -1,7 +1,6 @@
 fastapi
 uvicorn
 numpy
-io
-PIL
+pillow
 tensorflow
 torch
