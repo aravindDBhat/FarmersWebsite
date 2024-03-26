@@ -315,6 +315,7 @@
   text-align: center;
   align-items: center;
 }
+
 .selectfile h1 {
   margin-bottom: 30px;
 }
@@ -331,7 +332,30 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 .result h1 {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+}
+.predictedResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.inputfile button {
+  color: white;
+  height: 40px;
+  width: 160px;
+  background-color: #0a8537;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: none;
+  margin-top: 30px;
+}
+.predictedResult img {
+  width: 150px;
+  height: 150px;
 }
 .form-control {
   width: 50px;
@@ -426,6 +450,140 @@
   text-align: center;
   align-items: center;
 }
+.landingpage {
+  width: 100%;
+  min-height: 100vh;
+}
+.landingpagecontainer {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("./Components/LandingPage/bg2.avif");
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: fill;
+  background-size: cover;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+.landingpagecontainer .welcomecontent {
+  width: 50%;
+  color: white;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.weathercontent {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weathercard {
+  width: 90%;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  box-shadow: 0px 0px 20px #000;
+}
+.searchicon {
+  background-color: #fff;
+  width: 85px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.searchicon i {
+  color: #000;
+}
+.weathercard .search {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: space-between;
+}
+.weathercard .search input {
+  border: none;
+  outline: 0;
+  background: #ebfffc;
+  color: #555;
+  padding: 10px 25px;
+  height: 40px;
+  border-radius: 20px;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 18px;
+}
+.weather .weather-icon {
+  width: 70px;
+  margin-top: 30px;
+}
+.weather h1 {
+  font-size: 50px;
+  font-weight: 500;
+}
+.weather h2 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+.detail {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.detail .col {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.detail .col img {
+  width: 40px;
+  margin-right: 10px;
+}
+.detail .col .humidity,
+.wind {
+  font-size: 20px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+.welcomecontent h1 {
+  text-align: center;
+  align-items: center;
+}
+.welcomecontent p {
+  margin-top: 20px;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.6;
+  word-spacing: 2px;
+  font-weight: 600;
+  color: #f7fafa;
+  font-size: 19px;
+}
+.welcomecontent button {
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 10px 10px 10px #000;
+  background-color: #f6f4f9;
+  color: #000;
+  font-weight: 600;
+}
 
 @media screen and (max-width: 600px) {
   .body {
@@ -452,6 +610,22 @@
   .selectfile {
     width: 90%;
   }
+  .landingpagecontainer {
+    flex-direction: column;
+  }
+  .landingpagecontainer .welcomecontent {
+    width: 90%;
+    color: white;
+    margin-bottom: 20px;
+  }
+  .weathercard .search {
+    flex-direction: column;
+  }
+  .searchicon {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media screen and (max-width: 769px) and (min-width: 425px) {
@@ -466,5 +640,13 @@
   }
   .selectfile {
     width: 80%;
+  }
+  .landingpagecontainer {
+    flex-direction: column;
+  }
+  .landingpagecontainer .welcomecontent {
+    width: 90%;
+    color: white;
+    margin-bottom: 20px;
   }
 }

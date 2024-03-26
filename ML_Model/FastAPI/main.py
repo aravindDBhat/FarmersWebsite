@@ -14,9 +14,27 @@ import torchvision.transforms as transforms   # for transforming images into ten
 from torchvision.utils import make_grid       # for data checking
 from torchvision.datasets import ImageFolder
 from torchvision.models import resnet18# for working with classes and images
-
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Define the origins that you want to allow CORS for
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+    # Add any other origins that you want to allow here
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
+
 class SimpleResidualBlock(nn.Module):
     def __init__(self):
         super().__init__()
@@ -127,15 +145,20 @@ CLASS_NAMES=['Apple___Apple_scab', 'Apple___Black_rot', 'Apple___Cedar_apple_rus
              'Tomato___Target_Spot', 'Tomato___Tomato_Yellow_Leaf_Curl_Virus', 'Tomato___Tomato_mosaic_virus', 
              'Tomato___healthy']
 
+@app.post("/hello")
+async def h():
+    print("running")
+    return{
+         'class': "hiiiiii",
+      }
+    
 
 @app.post("/predict")
-async def predict(
-    file: UploadFile = File(...)
-):
+async def predict(file: UploadFile = File(...)):
+    image_bytes = await file.read()
     
-    image = await file.read()
-    print("type is :",type(image))
-    image = Image.open(BytesIO(image)).convert('RGB')
+    # Convert bytes to PIL Image
+    image = Image.open(BytesIO(image_bytes)).convert('RGB')
     print("type is :",type(image))
     print(" before : ", image)
     image=image.resize((256,256))

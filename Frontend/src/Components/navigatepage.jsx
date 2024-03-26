@@ -6,11 +6,12 @@ import UserSignIn from "./Sign-In-Up/usersignin";
 import UserSignUp from "./Sign-In-Up/usersignup";
 import Welcomepage from "./Sign-In-Up/welcomepage";
 import DiseaseDetection from "./Disease-Detection/DiseaseDetection";
+import LandingPage from "./LandingPage/LandingPage";
 function NavigatePage() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<UserSignIn />} />
+        <Route exact path="/" element={<LandingPage />} />
         <Route path="/signup" element={<UserSignUp />} />
         <Route path="/signin" element={<UserSignIn />} />
         <Route path="/Emailverification" element={<OTP />} />
