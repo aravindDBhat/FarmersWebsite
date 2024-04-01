@@ -7,6 +7,7 @@ import UserSignUp from "./Sign-In-Up/usersignup";
 import Welcomepage from "./Sign-In-Up/welcomepage";
 import DiseaseDetection from "./Disease-Detection/DiseaseDetection";
 import LandingPage from "./LandingPage/LandingPage";
+import Post from "./Post_Problem/Post";
 function NavigatePage() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function NavigatePage() {
         <Route path="/Emailverification" element={<OTP />} />
         <Route path="/setPassword" element={<Password />} />
         <Route path="/diseaseDetection" element={<DiseaseDetection />} />
+        <Route path="/post" element={<Post />} />
       </Routes>
     </BrowserRouter>
   );

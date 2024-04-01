@@ -1,0 +1,1344 @@
+/*
+! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  /* 3 */
+  tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+  -webkit-font-feature-settings: normal;
+          font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  -webkit-font-feature-settings: normal;
+          font-feature-settings: normal;
+  /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  -webkit-font-feature-settings: inherit;
+          font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+.body {
+  background: linear-gradient(to right, white, #c9d6ff);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 100%;
+  padding: 0px;
+}
+
+.welcomepage {
+  background: linear-gradient(to right, #6e7ed6, #512da8);
+  color: #fff;
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container p {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin: 20px 0;
+}
+
+.container span {
+  font-size: 12px;
+}
+
+.container a {
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 15px 10px 10px 0;
+}
+
+.welcomepage button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 45px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.signin {
+  padding: 20px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signin button {
+  background-color: #6438cc;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 45px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.inputbody {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  align-items: start;
+}
+
+.inputbody .input-data {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 20px;
+}
+
+.inputbody .input-data input {
+  height: 30px;
+  width: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid silver;
+}
+
+.inputbody .input-data label {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: gray;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon {
+  margin: 20px 0;
+}
+
+.social-icon a {
+  border: 1px solid #ccc;
+  color: #0a8537;
+  border-radius: 20%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 3px;
+  width: 40px;
+  height: 40px;
+}
+
+.otp {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding: 30px;
+}
+
+.otp h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 20px;
+}
+
+.otp .stateButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.otp .otpbody {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.otpbody p {
+  margin-left: 7px;
+}
+
+.otpbody .passwordbody {
+  text-align: justify;
+  align-items: start;
+  margin-left: -13px;
+}
+
+.otpbody .btn-sm {
+  width: 100px;
+  font-weight: 600;
+}
+
+.stateButtons button {
+  width: 130px;
+  height: 40px;
+}
+
+.password {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding: 30px;
+}
+
+.password h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 20px;
+}
+
+.password .passwordbody {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  align-items: start;
+}
+
+.password button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  height: 40px;
+  width: 180px;
+  border: none;
+  background-color: #6e7ed6;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.passwordbody .input-data {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 20px;
+}
+
+.passwordbody .input-data input {
+  height: 30px;
+  width: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid silver;
+}
+
+.input-data input:valid ~ label,
+.input-data input:focus ~ label {
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  font-size: 13px;
+  color: #4158d0;
+}
+
+.passwordbody .input-data label {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: gray;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.DiseaseDetection {
+  width: 100%;
+  height: 100%;
+  background-color: #010419;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.Navbar {
+  color: #fff;
+}
+
+.navbar {
+  padding: 15px;
+}
+
+.nav-item {
+  margin-right: 30px;
+  color: #fff;
+}
+
+.navbar-nav {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  text-align: end;
+  margin-right: 100px;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-weight: 600;
+}
+
+.navbar-brand i {
+  color: rgb(114, 220, 114);
+  font-size: 30px;
+  margin: 0 10px 0 0px;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.detectionbody {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: #0a8537;
+}
+
+.selectfile {
+  background-color: rgba(28, 17, 41, 0.35);
+  color: #fff;
+  padding: 20px;
+  width: 40%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: solid rgba(60, 59, 59, 0.35);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.inputfile {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  height: 200px;
+}
+
+.inputfile input {
+  display: none;
+}
+
+.inputfile label {
+  color: white;
+  height: 40px;
+  width: 160px;
+  background-color: #0a8537;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.selectfile h1 {
+  margin-bottom: 30px;
+}
+
+.result {
+  padding: 20px;
+  color: #fff;
+  width: 40%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(28, 17, 41, 0.35);
+  border: solid rgba(60, 59, 59, 0.35);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.result h1 {
+  margin-bottom: 20px;
+}
+
+.predictedResult {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.inputfile button {
+  color: white;
+  height: 40px;
+  width: 160px;
+  background-color: #0a8537;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: none;
+  margin-top: 30px;
+}
+
+.predictedResult img {
+  width: 150px;
+  height: 150px;
+}
+
+.form-control {
+  width: 50px;
+  display: flex;
+}
+
+.diseaseDetectionBGImage {
+  background-image: url("./Components/Disease-Detection/grape.avif");
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  color: white;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  object-position: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.diseaseDetectionBGImage .diseaseDetectionHeadder {
+  font-size: 50px;
+  font-weight: 500;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 10px;
+  margin-top: 60px;
+}
+
+.diseaseDetectionBGImage button {
+  height: 40px;
+  width: 150px;
+  background-color: #64eb96;
+  color: #000;
+  border: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.diseaseDetectionBGImage .HowItWorks {
+  background: linear-gradient(to bottom, rgb(46, 83, 38), rgb(66, 151, 66));
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.diseaseDetectionBGImage .HowItWorks span {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.HowItWorks .steps {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.HowItWorks .steps .step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.HowItWorks .steps .step i {
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.stepnumber {
+  background-color: white;
+  width: 23px;
+  height: 23px;
+  color: #000;
+  border-radius: 50px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.HowItWorks .steps .step .stepHead {
+  font-size: 20px;
+}
+
+.HowItWorks .steps .step .stepdescription {
+  font-size: 14px;
+}
+
+.diseaseDetectioncontainer {
+  padding: 30px;
+  background-color: #010419;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.landingpage {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.landingpagecontainer {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("./Components/LandingPage/bg2.avif");
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: fill;
+  background-size: cover;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.landingpagecontainer .welcomecontent {
+  width: 50%;
+  color: white;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.weathercontent {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weathercard {
+  width: 90%;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  box-shadow: 0px 0px 20px #000;
+}
+
+.searchicon {
+  background-color: #fff;
+  width: 85px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchicon i {
+  color: #000;
+}
+
+.weathercard .search {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.weathercard .search input {
+  border: none;
+  outline: 0;
+  background: #ebfffc;
+  color: #555;
+  padding: 10px 25px;
+  height: 40px;
+  border-radius: 20px;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 18px;
+}
+
+.weather .weather-icon {
+  width: 70px;
+  margin-top: 30px;
+}
+
+.weather h1 {
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.weather h2 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: -10px;
+}
+
+.detail {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.detail .col {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.detail .col img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.detail .col .humidity,
+.wind {
+  font-size: 20px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.welcomecontent h1 {
+  text-align: center;
+  align-items: center;
+}
+
+.welcomecontent p {
+  margin-top: 20px;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.6;
+  word-spacing: 2px;
+  font-weight: 600;
+  color: #f7fafa;
+  font-size: 19px;
+}
+
+.welcomecontent button {
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 10px 10px 10px #000;
+  background-color: #f6f4f9;
+  color: #000;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 600px) {
+  .body {
+    padding: 10px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .welcomepage {
+    width: 100%;
+  }
+
+  .signin {
+    width: 100%;
+  }
+
+  .diseaseDetectionBGImage .diseaseDetectionHeadder {
+    font-size: 30px;
+  }
+
+  .diseaseDetectioncontainer {
+    flex-direction: column;
+  }
+
+  .result {
+    width: 90%;
+  }
+
+  .selectfile {
+    width: 90%;
+  }
+
+  .landingpagecontainer {
+    flex-direction: column;
+  }
+
+  .landingpagecontainer .welcomecontent {
+    width: 90%;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .weathercard .search {
+    flex-direction: column;
+  }
+
+  .searchicon {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 769px) and (min-width: 425px) {
+  .diseaseDetectionBGImage .diseaseDetectionHeadder {
+    font-size: 38px;
+  }
+
+  .diseaseDetectioncontainer {
+    flex-direction: column;
+  }
+
+  .result {
+    width: 80%;
+  }
+
+  .selectfile {
+    width: 80%;
+  }
+
+  .landingpagecontainer {
+    flex-direction: column;
+  }
+
+  .landingpagecontainer .welcomecontent {
+    width: 90%;
+    color: white;
+    margin-bottom: 20px;
+  }
+}
