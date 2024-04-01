@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import LandingPage from "../LandingPage/LandingPage";
 import { ThemeContext } from "@mui/styled-engine";
 import Header from "./Headder/headder";
+import Issue from "./Issues/issue";
 
 function Post() {
   const [tab, setTab] = useState("1");
@@ -16,7 +17,7 @@ function Post() {
   const [areaWallet, setareaWallet] = useState(0);
 
   return (
-    <div>
+    <div className="post">
       <Navbar />
       <div>
         <Box>
@@ -30,7 +31,7 @@ function Post() {
               <Tab label="Works" value="3" />
             </TabList>
             <TabPanel value="1">
-              <LandingPage />
+              <Issue />
             </TabPanel>
             <TabPanel value="2">
               <LandingPage />

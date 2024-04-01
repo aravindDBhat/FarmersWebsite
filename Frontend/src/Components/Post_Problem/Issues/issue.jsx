@@ -1,3 +1,12 @@
+import Footer from "./Footer/footer";
+import Body from "./Body/body";
+
 function Issue() {
-  return <div></div>;
+  return (
+    <div>
+      <Footer />
+      <Body />
+    </div>
+  );
 }
+export default Issue;

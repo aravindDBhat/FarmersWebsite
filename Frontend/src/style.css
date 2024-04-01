@@ -588,6 +588,119 @@
   font-weight: 600;
 }
 
+.post {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.issueFooter a button {
+  border: none;
+  width: 150px;
+  height: 40px;
+  margin: 10px;
+  color: white;
+  background-color: rgb(149, 88, 230);
+  box-shadow: 5px 5px 10px #000;
+}
+.issueFooter {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  align-items: center;
+  text-align: center;
+}
+.footerserachbar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.footersearch {
+  margin: 5px 5px 0 0;
+  height: 40px;
+  border-color: #cba6a6;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.footerserachbar button {
+  height: 43px;
+  background-color: #9a66dd;
+  color: #fff;
+  width: 43px;
+  border: none;
+  border-radius: 30px;
+}
+.issueBody {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.issueBody .card {
+  margin: 30px;
+  box-shadow: 0px 0px 20px #1b550f;
+}
+.cardfooter {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.createpost {
+  background-color: white;
+  color: #000;
+  display: flex;
+  justify-content: left;
+  text-align: center;
+  align-items: left;
+  flex-direction: column;
+  padding: 20px 40px 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #000;
+}
+.postheading {
+  color: #0d0825;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: 20px;
+  text-shadow: 0px 0px 5px #cebfbf;
+}
+.createpost .input-data {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.createpost .input-data input {
+  height: 30px;
+  width: 50%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid silver;
+  margin-left: -10px;
+}
+.createpost .input-data label {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: gray;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.createpost button {
+  width: 150px;
+  margin: 20px 0 20px 0;
+}
+.createpost textarea {
+  margin-left: 10px;
+  border-radius: 8px;
+  color: silver;
+}
+
 @media screen and (max-width: 600px) {
   .body {
     padding: 10px;
@@ -628,6 +741,12 @@
     margin-top: 10px;
     width: 40px;
     height: 40px;
+  }
+  .issueBody {
+    padding: 0px;
+  }
+  .issueBody .card {
+    margin: 10px;
   }
 }
 
