@@ -5,7 +5,6 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import tensorflow as tf
-import cv2
 import torch
 import torch.nn as nn           # for creating  neural networks
 from torch.utils.data import DataLoader
