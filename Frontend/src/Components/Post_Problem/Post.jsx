@@ -27,15 +27,13 @@ function Post() {
               aria-label="lab API tabs example"
             >
               <Tab label="Issues" value="1" />
-              <Tab label="Volunteers" value="2" />
+              <Tab label="Approve" value="2" />
               <Tab label="Works" value="3" />
             </TabList>
             <TabPanel value="1">
               <Issue />
             </TabPanel>
-            <TabPanel value="2">
-              <LandingPage />
-            </TabPanel>
+            <TabPanel value="2"></TabPanel>
             <TabPanel value="3">
               <LandingPage />
             </TabPanel>

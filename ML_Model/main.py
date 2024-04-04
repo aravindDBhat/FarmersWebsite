@@ -121,7 +121,7 @@ class ResNet9(ImageClassificationBase):
         return out 
 
 # Example usage
-model_path = "ML_Model/pretrained_model/plant-disease-model-complete2.pth"
+model_path = "ML_Model/plant-disease-model-complete2.pth"
 
 # Assuming ResNet9 is defined in your FastAPI script
 model =ResNet9(3, 38)
