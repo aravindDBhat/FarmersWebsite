@@ -32,9 +32,6 @@ Router.post("/signup", async (req, res) => {
 });
 
 Router.post("/signin", async (req, res) => {
-  console.log(req.body.email);
-  console.log(req.body.password);
-
   try {
     const msg = await userService.getUsers(req, res);
     console.log("msg is : ", msg);

@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 async function validateUser(req, res) {
-  const { id, name, email, number, password } = req.body;
+  const { id, name, email, number, password, type } = req.body;
   try {
     if (!name) {
       return {
@@ -44,6 +44,7 @@ async function validateUser(req, res) {
         email,
         number,
         password,
+        type,
       });
       await newUser.save();
       return {
@@ -55,7 +56,7 @@ async function validateUser(req, res) {
     console.log(error.message);
     return res.json({
       StatusCode: 400,
-      msg: error.message,
+      message: error.message,
     });
   }
 }
@@ -113,6 +114,7 @@ async function getUsers(req, res) {
         return {
           StatusCode: 200,
           msg: "Logged in",
+          id: data.id,
         };
       } else {
         return {

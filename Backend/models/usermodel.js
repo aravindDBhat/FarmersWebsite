@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.model("usersdata", userSchema);

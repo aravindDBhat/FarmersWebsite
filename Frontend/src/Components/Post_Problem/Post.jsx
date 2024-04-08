@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/navbar";
 import Tab from "@mui/material/Tab";
 import TabList from "@mui/lab/TabList";
@@ -9,12 +9,25 @@ import LandingPage from "../LandingPage/LandingPage";
 import { ThemeContext } from "@mui/styled-engine";
 import Header from "./Headder/headder";
 import Issue from "./Issues/issue";
+import { useNavigate } from "react-router-dom";
 
 function Post() {
   const [tab, setTab] = useState("1");
   const [area, setArea] = useState(null);
   const [areaName, setAreaName] = useState(null);
   const [areaWallet, setareaWallet] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const d = new Date();
+    let validate = localStorage.getItem("Token");
+    validate = JSON.parse(validate);
+    if (validate.id && validate.date === d.getDate()) {
+      navigate("/post");
+    } else {
+      navigate("/signin");
+    }
+  }, []);
 
   return (
     <div className="post">

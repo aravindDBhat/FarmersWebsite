@@ -181,9 +181,11 @@
   width: 100%;
   padding: 30px;
 }
-.password h2 {
+.password h5 {
   font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: 20px;
+  text-align: left;
+  align-items: start;
 }
 .password .passwordbody {
   display: flex;
@@ -747,6 +749,12 @@
   }
   .issueBody .card {
     margin: 10px;
+  }
+  .issueFooter {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
   }
 }
 

@@ -10,6 +10,7 @@ function Signin(Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const date = new Date();
   const handleEmail = (e) => {
     setError("");
     setEmail(e.target.value);
@@ -40,7 +41,15 @@ function Signin(Props) {
       setError(data.data.msg.msg);
     }
     if (data.data.msg.StatusCode == 200) {
-      navigate("/diseaseDetection");
+      const Token = {
+        id: data.data.msg.id,
+        date: date.getDate(),
+      };
+      localStorage.setItem("Token", JSON.stringify(Token));
+
+      console.log(localStorage.getItem("Token", Token));
+
+      navigate("/");
     }
     setEmail("");
     setPassword("");

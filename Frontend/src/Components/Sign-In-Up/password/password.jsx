@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Button from "../Button/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import uuid4 from "uuid4";
 
 function Password(Props) {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ function Password(Props) {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
   const [error, setError] = useState("");
+  const [type, setType] = useState("");
   let data = "";
   const handlePassword = (e) => {
     setError("");
@@ -18,16 +21,21 @@ function Password(Props) {
     setError("");
     setConfirmpassword(e.target.value);
   };
+  const handleType = (e) => {
+    setError("");
+    setType(e.target.value);
+  };
   let payload = localStorage.getItem("payload");
 
   payload = JSON.parse(payload);
 
   const userInfo = {
-    id: "1234",
+    id: payload.id,
     name: payload.name,
     email: payload.email,
     number: payload.phone,
     password,
+    type,
   };
   const config = {
     headers: {
@@ -40,6 +48,10 @@ function Password(Props) {
       setError("Please enter the password");
       return;
     }
+    if (!type) {
+      setError("Please select the account type");
+      return;
+    }
     if (!confirmpassword) {
       console.log("cpass");
 
@@ -50,6 +62,7 @@ function Password(Props) {
       setError("Password does not match");
       return;
     }
+
     try {
       data = await axios.post(
         "http://localhost:4000/api/user/signup",
@@ -65,7 +78,7 @@ function Password(Props) {
     console.log("after : ", localStorage.getItem("payload"));
     localStorage.removeItem("payload");
     localStorage.removeItem("otp");
-    navigate("/diseaseDetection");
+    navigate("/signin");
   };
   useEffect(() => {
     setError(data);
@@ -73,7 +86,18 @@ function Password(Props) {
   return (
     <div>
       <div className="password">
-        <h2>Enter the Password</h2>
+        <h5>Select the type of Account</h5>
+        <Form.Select
+          className="mb-5"
+          aria-label="Default select example"
+          onChange={handleType}
+        >
+          <option>Open this select menu</option>
+          <option value="1">User</option>
+          <option value="2">Volunteer</option>
+        </Form.Select>
+
+        <h5>Set the Password</h5>
         <div className="passwordbody">
           <div className="input-data">
             <input

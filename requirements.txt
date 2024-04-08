@@ -5,3 +5,6 @@ pillow
 tensorflow
 torch
 gunicorn
+
+opencv-python
+pandas

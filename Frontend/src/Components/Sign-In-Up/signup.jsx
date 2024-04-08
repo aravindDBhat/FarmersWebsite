@@ -2,6 +2,8 @@ import Input from "./InputField/input";
 import Button from "./Button/button";
 import SocialIcons from "./SocialIcon/socialicon";
 import axios from "axios";
+import uuid4 from "uuid4";
+
 import { useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
@@ -14,6 +16,7 @@ function Signup() {
   const [otp, setOtp] = useState("");
   const [signuppassword, setSignupPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState();
   let data = "";
   const handleEmail = (e) => {
     setError("");
@@ -33,6 +36,7 @@ function Signup() {
       email: signupemail,
       name,
       phone,
+      id: token,
     };
     const config = {
       headers: {
@@ -45,7 +49,18 @@ function Signup() {
 
     navigate("/Emailverification");
   };
-  const ValidatePayload = () => {
+  async function generateAndSetToken() {
+    let id = await uuid4(); // Generate UUIDv4 token
+    setToken(id); // Assuming setToken is an asynchronous function to set the token
+
+    // Check if the generated token is valid (assuming uuid4.valid checks the validity)
+    const isValid = uuid4.valid(id);
+    console.log("Token is valid:", isValid);
+
+    console.log("Generated token:", id);
+  }
+
+  const ValidatePayload = async () => {
     if (!name) {
       setError("Enter the User Name");
       return;
@@ -61,6 +76,7 @@ function Signup() {
     sendOtp();
   };
   useEffect(() => {
+    generateAndSetToken();
     setError(data);
   }, []);
   return (
