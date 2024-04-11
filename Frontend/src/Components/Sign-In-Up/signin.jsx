@@ -44,6 +44,7 @@ function Signin(Props) {
       const Token = {
         id: data.data.msg.id,
         date: date.getDate(),
+        type: data.data.msg.type,
       };
       localStorage.setItem("Token", JSON.stringify(Token));
 

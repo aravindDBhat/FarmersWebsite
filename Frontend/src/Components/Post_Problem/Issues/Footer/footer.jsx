@@ -1,4 +1,4 @@
-function Footer() {
+function Footer(props) {
   return (
     <div className="issueFooter">
       <a href="/createpost">
@@ -6,11 +6,12 @@ function Footer() {
       </a>{" "}
       <div className="footerserachbar">
         <input
+          onChange={props.function}
           className="footersearch"
           placeholder="Search for Issue"
           type="text"
         />
-        <button type="submit">
+        <button onClick={props.function2} type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>

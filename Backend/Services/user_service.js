@@ -1,4 +1,5 @@
 const User = require("../models/usermodel");
+const Post = require("../models/postsmodel");
 const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
@@ -50,6 +51,65 @@ async function validateUser(req, res) {
       return {
         StatusCode: 200,
         message: "Successfully registered",
+      };
+    }
+  } catch (error) {
+    console.log(error.message);
+    return res.json({
+      StatusCode: 400,
+      message: error.message,
+    });
+  }
+}
+async function getPosterName(req, res) {
+  const { id } = req.body;
+  const data = await User.find({ id });
+  return {
+    data: data,
+  };
+}
+async function validatePost(req, res) {
+  const { id, posterid, title, description, image, vote, date } = req.body;
+  try {
+    if (!posterid) {
+      return {
+        StatusCode: 400,
+        message: "Something went wrong",
+      };
+    }
+    if (!title) {
+      return {
+        StatusCode: 400,
+        message: "Please enter the title",
+      };
+    }
+    if (!description) {
+      return {
+        StatusCode: 400,
+        message: "Please enter the Description",
+      };
+    }
+
+    const Exist = await Post.findOne({ title });
+    if (Exist) {
+      return {
+        StatusCode: 409,
+        message: "This Issue is alredy posted",
+      };
+    } else {
+      const newPost = new Post({
+        id,
+        posterid,
+        title,
+        description,
+        image,
+        vote,
+        date,
+      });
+      await newPost.save();
+      return {
+        StatusCode: 200,
+        message: "Successfully posted",
       };
     }
   } catch (error) {
@@ -135,9 +195,27 @@ async function getUsers(req, res) {
     });
   }
 }
+async function getPost(req, res) {
+  const title = req.body.search;
+  console.log(title);
+  const data = await Post.find({ title });
+  return {
+    data,
+  };
+}
+async function getPosts(res) {
+  const data = await Post.find({});
+  return {
+    data,
+  };
+}
 
 module.exports = {
+  getPost,
+  getPosts,
   getUsers,
   validateUser,
   otpSender,
+  validatePost,
+  getPosterName,
 };
