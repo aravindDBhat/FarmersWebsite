@@ -86,6 +86,21 @@ Router.post("/poster", async (req, res) => {
     });
   }
 });
+Router.post("/vote", async (req, res) => {
+  console.log(req.body.id);
+  try {
+    const msg = await userService.setVote(req, res);
+    console.log("msg is : ", msg);
+    return res.json({
+      msg,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.json({
+      msg: error.message,
+    });
+  }
+});
 
 Router.post("/EmailVerification", async (req, res) => {
   try {

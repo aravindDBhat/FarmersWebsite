@@ -3,6 +3,7 @@ const Post = require("../models/postsmodel");
 const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const { post } = require("../Routes/user.routes");
 dotenv.config();
 
 async function validateUser(req, res) {
@@ -120,7 +121,20 @@ async function validatePost(req, res) {
     });
   }
 }
-
+async function setVote(req, res) {
+  const { id, vote } = req.body;
+  console.log(req.body);
+  try {
+    const data = await Post.updateOne({ id }, { $set: { vote: vote + 1 } });
+    return {
+      data: data,
+    };
+  } catch (error) {
+    return res.json({
+      data: error.message,
+    });
+  }
+}
 async function otpGenerate() {
   const otp = await otpGenerator.generate(6, {
     lowerCaseAlphabets: false,
@@ -212,6 +226,7 @@ async function getPosts(res) {
 
 module.exports = {
   getPost,
+  setVote,
   getPosts,
   getUsers,
   validateUser,

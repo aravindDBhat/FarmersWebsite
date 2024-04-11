@@ -10,6 +10,20 @@ function Body(props) {
   const [data, setData] = useState();
   const [flip, setFlip] = useState(0);
   const [poster, setPoster] = useState();
+
+  const getVoteData = async (d) => {
+    const payload = {
+      id: d.id,
+      vote: d.vote,
+    };
+    const votedata = await axios.post(
+      "http://localhost:4000/api/user/vote",
+      payload
+    );
+    console.log("Vote data : ", votedata);
+    setIssues(votedata.data.msg.data);
+  };
+
   const getcardData = async (d) => {
     const payload = {
       id: d.posterid,
@@ -28,7 +42,9 @@ function Body(props) {
     setFlip(!flip);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setIssues();
+  }, []);
   return (
     <>
       {flip ? (
@@ -61,6 +77,7 @@ function Body(props) {
           {console.log("all issues : ", props.issues)}
           {props.issues && props.issues.length > 0
             ? props.issues.map((issue) => {
+                const desc = issue.description;
                 return (
                   <div>
                     <Card
@@ -79,12 +96,20 @@ function Body(props) {
                       <Card.Body>
                         <Card.Title>{issue.title}</Card.Title>
                         <Card.Text className="desc">
-                          {issue.description}
+                          {desc.slice(0, 40)}
+
+                          <p
+                            onClick={() => {
+                              getcardData(issue);
+                            }}
+                          >
+                            Read More...
+                          </p>
                         </Card.Text>
                         <div className="cardfooter">
                           <Button
                             onClick={() => {
-                              getcardData(issue);
+                              getVoteData(issue);
                             }}
                             variant="primary"
                           >

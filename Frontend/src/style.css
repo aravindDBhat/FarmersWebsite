@@ -661,10 +661,12 @@
   height: 100px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   text-align: justify;
   align-items: center;
-  overflow-y: scroll;
-  scrollbar-width: none;
+}
+.desc p {
+  color: #4158d0;
 }
 .cardDetail {
   width: 100%;
