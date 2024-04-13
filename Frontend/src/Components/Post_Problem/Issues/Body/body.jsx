@@ -6,7 +6,11 @@ import axios from "axios";
 
 function Body(props) {
   const [issues, setIssues] = useState();
-  const [search, setSearch] = useState();
+
+  let Token = localStorage.getItem("Token");
+  Token = JSON.parse(Token);
+  console.log("here : ", typeof Token.type);
+
   const [data, setData] = useState();
   const [flip, setFlip] = useState(0);
   const [poster, setPoster] = useState();
@@ -24,9 +28,9 @@ function Body(props) {
     setIssues(votedata.data.msg.data);
   };
 
-  const getcardData = async (d) => {
+  const getcardData = async (d, i) => {
     const payload = {
-      id: d.posterid,
+      id: i,
     };
     const posterdata = await axios.post(
       "http://localhost:4000/api/user/poster",
@@ -100,22 +104,35 @@ function Body(props) {
 
                           <p
                             onClick={() => {
-                              getcardData(issue);
+                              getcardData(issue, issue.posterid);
                             }}
                           >
                             Read More...
                           </p>
                         </Card.Text>
                         <div className="cardfooter">
-                          <Button
-                            onClick={() => {
-                              getVoteData(issue);
-                            }}
-                            variant="primary"
-                          >
-                            {" "}
-                            Vote for Issue
-                          </Button>
+                          {Token.type && Token.type == "1" ? (
+                            <Button
+                              onClick={() => {
+                                getVoteData(issue);
+                              }}
+                              variant="primary"
+                            >
+                              {" "}
+                              Vote for Issue
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => {
+                                getVoteData(issue);
+                              }}
+                              variant="primary"
+                            >
+                              {" "}
+                              Choose
+                            </Button>
+                          )}
+
                           <span>{issue.vote} votes</span>
                         </div>
                       </Card.Body>

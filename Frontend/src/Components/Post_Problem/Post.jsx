@@ -47,9 +47,7 @@ function Post() {
               <Issue />
             </TabPanel>
             <TabPanel value="2"></TabPanel>
-            <TabPanel value="3">
-              <LandingPage />
-            </TabPanel>
+            <TabPanel value="3"></TabPanel>
           </TabContext>
         </Box>
       </div>

@@ -278,6 +278,11 @@
 .nav-link {
   color: #fff;
 }
+.navbarbutton {
+  border: none;
+  background-color: transparent;
+  color: white;
+}
 .detectionbody {
   position: relative;
   width: 100%;
@@ -675,10 +680,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: rgb(5, 2, 10);
 }
 .detailcard {
-  background-color: rgba(29, 11, 57, 0.5);
+  background-color: rgba(29, 11, 57, 0.8);
   box-shadow: 0 0 10px #514e4e;
   padding: 30px;
   display: flex;
@@ -686,6 +690,7 @@
   color: rgb(214, 190, 190);
   border: none;
   max-width: 40%;
+  min-width: 500px;
 }
 .detailcardHeading {
   display: flex;

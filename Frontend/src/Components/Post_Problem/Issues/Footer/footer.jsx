@@ -1,9 +1,19 @@
 function Footer(props) {
+  let Token = localStorage.getItem("Token");
+  Token = JSON.parse(Token);
+  console.log("here : ", typeof Token.type);
   return (
     <div className="issueFooter">
-      <a href="/createpost">
-        <button>Post Issue</button>
-      </a>{" "}
+      {Token.type && Token.type == "1" ? (
+        <a href="/createpost">
+          <button>Post Issue</button>
+        </a>
+      ) : (
+        <a href="/createpost">
+          <button>Post Solution</button>
+        </a>
+      )}
+
       <div className="footerserachbar">
         <input
           onChange={props.function}

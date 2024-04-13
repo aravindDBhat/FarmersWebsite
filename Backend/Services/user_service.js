@@ -189,6 +189,7 @@ async function getUsers(req, res) {
           StatusCode: 200,
           msg: "Logged in",
           id: data.id,
+          type: data.type,
         };
       } else {
         return {

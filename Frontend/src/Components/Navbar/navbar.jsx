@@ -3,22 +3,28 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
+  let validates = localStorage.getItem("Token");
+  validates = JSON.parse(validates);
+  const d = new Date();
+  const handleSignout = () => {
+    let validate = localStorage.removeItem("Token");
 
+    navigate("/");
+  };
+  const handleSignin = () => {
+    navigate("/signin");
+  };
   const navigateDiseaseDetection = async () => {
-    const d = new Date();
-    let validate = localStorage.getItem("Token");
-    validate = JSON.parse(validate);
-    if (validate.id && validate.date === d.getDate()) {
+    if (validates && validates.date === d.getDate()) {
       navigate("/diseaseDetection");
     } else {
       navigate("/signin");
     }
   };
   const navigatePost = async () => {
-    const d = new Date();
     let validate = localStorage.getItem("Token");
     validate = JSON.parse(validate);
-    if (validate.id && validate.date === d.getDate()) {
+    if (validate && validate.date === d.getDate()) {
       navigate("/post");
     } else {
       navigate("/signin");
@@ -56,13 +62,21 @@ function Navbar() {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  E-Commerce
+                <a class="nav-link" onClick={navigatePost}>
+                  Post
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" onClick={navigatePost}>
-                  Post
+                <a class="nav-link" href="#">
+                  {validates && validates.date === d.getDate() ? (
+                    <button onClick={handleSignout} className="navbarbutton">
+                      Sign-Out
+                    </button>
+                  ) : (
+                    <button onClick={handleSignin} className="navbarbutton">
+                      Sign-In
+                    </button>
+                  )}
                 </a>
               </li>
             </ul>

@@ -6,14 +6,20 @@ import Axios from "axios";
 function Issue() {
   const [issues, setIssues] = useState();
   const [search, setSearch] = useState();
+  let Token = localStorage.getItem("Token");
+  Token = JSON.parse(Token);
+  console.log("here : ", typeof Token.type);
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
   const getAllIssues = async () => {
     const data = await Axios.get("http://localhost:4000/api/user/posts");
-
-    setIssues(data.data.users.data);
-    console.log("get method : ", data.data.users.data);
+    if (Token.type == "2") {
+      setIssues(data.data.users.data.slice(0, 2));
+    } else {
+      setIssues(data.data.users.data);
+    }
+    console.log("get method : ", data.data.users.data.slice(0, 2));
   };
   const searchIssue = async () => {
     const p = {
