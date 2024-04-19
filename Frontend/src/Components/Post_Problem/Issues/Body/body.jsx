@@ -19,13 +19,26 @@ function Body(props) {
     const payload = {
       id: d.id,
       vote: d.vote,
+      voterid: Token.id,
     };
     const votedata = await axios.post(
       "http://localhost:4000/api/user/vote",
       payload
     );
-    console.log("Vote data : ", votedata);
-    setIssues(votedata.data.msg.data);
+    console.log("Vote data : ", votedata.data.msg);
+    alert(votedata.data.msg.data + d.title);
+  };
+  const assignTask = async (d) => {
+    const payload = {
+      id: d.id,
+      voluenteer: Token.id,
+    };
+    const data = await axios.post(
+      "http://localhost:4000/api/user/setVoluenteer",
+      payload
+    );
+    console.log("Voluenteer data : ", data.data.msg);
+    alert(data.data.msg.data);
   };
 
   const getcardData = async (d, i) => {
@@ -72,6 +85,10 @@ function Body(props) {
               <p>
                 {" "}
                 <b className="subhead">Date : </b> {data.date}
+              </p>
+              <p>
+                {" "}
+                <b className="subhead">Task assigned to : </b> {data.voluenteer}
               </p>
             </div>
           </div>
@@ -124,7 +141,7 @@ function Body(props) {
                           ) : (
                             <Button
                               onClick={() => {
-                                getVoteData(issue);
+                                assignTask(issue);
                               }}
                               variant="primary"
                             >

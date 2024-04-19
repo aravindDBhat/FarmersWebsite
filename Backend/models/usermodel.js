@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  task: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const User = mongoose.model("usersdata", userSchema);

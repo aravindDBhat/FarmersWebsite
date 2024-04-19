@@ -36,6 +36,7 @@ function Password(Props) {
     number: payload.phone,
     password,
     type,
+    task: false,
   };
   const config = {
     headers: {

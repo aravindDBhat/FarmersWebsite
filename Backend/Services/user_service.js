@@ -1,5 +1,6 @@
 const User = require("../models/usermodel");
 const Post = require("../models/postsmodel");
+const Vote = require("../models/votingmodel");
 const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
@@ -7,7 +8,7 @@ const { post } = require("../Routes/user.routes");
 dotenv.config();
 
 async function validateUser(req, res) {
-  const { id, name, email, number, password, type } = req.body;
+  const { id, name, email, number, password, type, task } = req.body;
   try {
     if (!name) {
       return {
@@ -47,6 +48,7 @@ async function validateUser(req, res) {
         number,
         password,
         type,
+        task,
       });
       await newUser.save();
       return {
@@ -62,6 +64,31 @@ async function validateUser(req, res) {
     });
   }
 }
+
+async function getVoterData(voterid, postid) {
+  try {
+    console.log(" ids are ", voterid, "/n", postid);
+    const data = await Vote.find({ voterid: voterid, postid: postid });
+    console.log("getting data : ", data);
+    if (data[0]) {
+      console.log("running");
+      return;
+    }
+
+    const newVote = new Vote({
+      voterid,
+      postid,
+    });
+    await newVote.save();
+    console.log("success");
+
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    return error.message;
+  }
+}
+
 async function getPosterName(req, res) {
   const { id } = req.body;
   const data = await User.find({ id });
@@ -70,7 +97,8 @@ async function getPosterName(req, res) {
   };
 }
 async function validatePost(req, res) {
-  const { id, posterid, title, description, image, vote, date } = req.body;
+  const { id, posterid, title, description, image, vote, date, voluenteer } =
+    req.body;
   try {
     if (!posterid) {
       return {
@@ -106,6 +134,7 @@ async function validatePost(req, res) {
         image,
         vote,
         date,
+        voluenteer,
       });
       await newPost.save();
       return {
@@ -121,13 +150,56 @@ async function validatePost(req, res) {
     });
   }
 }
-async function setVote(req, res) {
-  const { id, vote } = req.body;
-  console.log(req.body);
+async function setVoluenteer(req, res) {
   try {
-    const data = await Post.updateOne({ id }, { $set: { vote: vote + 1 } });
+    const { id, voluenteer } = req.body;
+    console.log("voluenteer : ", voluenteer);
+    const taskAssigned = await User.find({ id: voluenteer });
+    console.log("data is : ", taskAssigned);
+    if (taskAssigned[0].task) {
+      return {
+        data: "Please complete the assigned task before selecting new task",
+      };
+    }
+    const data = await Post.find({ id });
+    console.log("post data : ", data);
+    if (data[0].voluenteer) {
+      return {
+        data: "This task is already assigned ",
+      };
+    }
+    const voluenteerupdate = await User.updateOne(
+      { id: voluenteer },
+      { $set: { task: true } }
+    );
+    const voluenteerupdat = await User.find({ id: voluenteer });
+    console.log(voluenteerupdat);
+    await Post.updateOne({ id }, { $set: { voluenteer: voluenteer } });
     return {
-      data: data,
+      data: "Task is successfully assigned ",
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
+async function setVote(req, res) {
+  const { id, vote, voterid } = req.body;
+  console.log(req.body);
+  console.log(voterid);
+
+  try {
+    const voteData = await getVoterData(voterid, id);
+    console.log("voter data : ", voteData);
+    if (voteData) {
+      const data = await Post.updateOne({ id }, { $set: { vote: vote + 1 } });
+      return {
+        data: "Successfully voted for ",
+      };
+    }
+    return {
+      data: "You have already voted for ",
     };
   } catch (error) {
     return res.json({
@@ -234,4 +306,5 @@ module.exports = {
   otpSender,
   validatePost,
   getPosterName,
+  setVoluenteer,
 };

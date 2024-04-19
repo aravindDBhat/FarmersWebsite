@@ -57,6 +57,21 @@ Router.post("/signup", async (req, res) => {
   }
 });
 
+Router.post("/setVoluenteer", async (req, res) => {
+  try {
+    const msg = await userService.setVoluenteer(req, res);
+    console.log("setVoluenteer msg is : ", msg);
+    return res.json({
+      msg,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.json({
+      msg: error.message,
+    });
+  }
+});
+
 Router.post("/signin", async (req, res) => {
   try {
     const msg = await userService.getUsers(req, res);

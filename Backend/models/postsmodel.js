@@ -27,6 +27,9 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  voluenteer: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model("post", postSchema);
