@@ -724,6 +724,12 @@
   border-radius: 15px;
   box-shadow: 0 0 15px #000;
 }
+.postSolution {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+}
 .postheading {
   color: #0d0825;
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -770,6 +776,12 @@
 .createpost i {
   color: #7bc758;
   margin: 35px 0 43px 0;
+}
+
+.approvebttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 600px) {

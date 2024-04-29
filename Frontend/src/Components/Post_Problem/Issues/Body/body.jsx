@@ -14,6 +14,8 @@ function Body(props) {
   const [data, setData] = useState();
   const [flip, setFlip] = useState(0);
   const [poster, setPoster] = useState();
+  const [voluenteer, setVoluenteer] = useState();
+  const [voluenteerEmail, setVoluenteerEmail] = useState();
 
   const getVoteData = async (d) => {
     const payload = {
@@ -44,13 +46,21 @@ function Body(props) {
   const getcardData = async (d, i) => {
     const payload = {
       id: i,
+      voluenteer: d.voluenteer,
     };
     const posterdata = await axios.post(
       "http://localhost:4000/api/user/poster",
       payload
     );
-    console.log("poster is : ", posterdata.data.msg.data[0].name);
+    if (d.voluenteer) {
+      setVoluenteer(posterdata.data.msg.voluenteerData[0].name);
+      setVoluenteerEmail(posterdata.data.msg.voluenteerData[0].email);
+    } else {
+      setVoluenteer("Not Assigned");
+      setVoluenteerEmail("-");
+    }
     setPoster(posterdata.data.msg.data[0].name);
+
     console.log("card data : ", d);
     setData(d);
     setFlip(!flip);
@@ -88,7 +98,8 @@ function Body(props) {
               </p>
               <p>
                 {" "}
-                <b className="subhead">Task assigned to : </b> {data.voluenteer}
+                <b className="subhead">Task assigned to : </b>{" "}
+                {`${voluenteer} (${voluenteerEmail})`}
               </p>
             </div>
           </div>
@@ -157,34 +168,7 @@ function Body(props) {
                   </div>
                 );
               })
-            : ""}
-          {/* <Card className="card" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={img} />
-        <Card.Body>
-          <Card.Title>Inefficient water usage</Card.Title>
-          <Card.Text>
-            Seeking solutions to improve water efficiency for farmers.
-          </Card.Text>
-          <div className="cardfooter">
-            <Button variant="primary"> Vote for Issue</Button>
-            <span>9 votes</span>
-          </div>
-        </Card.Body>
-      </Card>
-      <Card className="card" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={img2} />
-        <Card.Body>
-          <Card.Title> Tomato spider-mite</Card.Title>
-          <Card.Text>
-            Need assistance with controlling spider mites infesting my tomato
-            plants.
-          </Card.Text>
-          <div className="cardfooter">
-            <Button variant="primary"> Vote for Issue</Button>
-            <span>4 votes</span>
-          </div>
-        </Card.Body>
-      </Card> */}
+            : "No result"}
         </div>
       )}
     </>

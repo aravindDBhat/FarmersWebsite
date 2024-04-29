@@ -1,6 +1,19 @@
 const express = require("express");
 const userService = require("../Services/user_service");
 const Router = express.Router();
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./files");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 Router.get("/", async (req, res) => {
   try {
@@ -41,7 +54,30 @@ Router.get("/posts", async (req, res) => {
     });
   }
 });
-
+Router.post("/Approvalposts", async (req, res) => {
+  try {
+    const msg = await userService.getApprovalPosts(req, res);
+    return res.json({
+      msg,
+    });
+  } catch (error) {
+    return res.json({
+      msg: error.message,
+    });
+  }
+});
+Router.post("/getAssignedTask", async (req, res) => {
+  try {
+    const msg = await userService.getAssignedTask(req, res);
+    return res.json({
+      msg,
+    });
+  } catch (error) {
+    return res.json({
+      msg: error.message,
+    });
+  }
+});
 Router.post("/signup", async (req, res) => {
   console.log(req.body);
   try {
@@ -82,6 +118,18 @@ Router.post("/signin", async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.json({
+      msg: error.message,
+    });
+  }
+});
+Router.post("/postSolution", upload.single("file"), async (req, res) => {
+  try {
+    const data = await userService.postSolution(req, res);
+    return res.json({
+      msg: data,
+    });
+  } catch (error) {
+    return res.json({
       msg: error.message,
     });
   }

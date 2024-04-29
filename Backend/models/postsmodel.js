@@ -30,6 +30,21 @@ const postSchema = mongoose.Schema({
   voluenteer: {
     type: String,
   },
+  rate: {
+    type: Number,
+  },
+  solution: {
+    type: String,
+  },
+  path: {
+    type: String,
+  },
+  approved: {
+    type: String,
+  },
+  fileOriginalName: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model("post", postSchema);

@@ -8,7 +8,7 @@ const { post } = require("../Routes/user.routes");
 dotenv.config();
 
 async function validateUser(req, res) {
-  const { id, name, email, number, password, type, task } = req.body;
+  const { id, name, email, number, password, type } = req.body;
   try {
     if (!name) {
       return {
@@ -48,7 +48,6 @@ async function validateUser(req, res) {
         number,
         password,
         type,
-        task,
       });
       await newUser.save();
       return {
@@ -90,10 +89,12 @@ async function getVoterData(voterid, postid) {
 }
 
 async function getPosterName(req, res) {
-  const { id } = req.body;
+  const { id, voluenteer } = req.body;
   const data = await User.find({ id });
+  const voluenteerData = await User.find({ id: voluenteer });
   return {
-    data: data,
+    data,
+    voluenteerData,
   };
 }
 async function validatePost(req, res) {
@@ -170,7 +171,7 @@ async function setVoluenteer(req, res) {
     }
     const voluenteerupdate = await User.updateOne(
       { id: voluenteer },
-      { $set: { task: true } }
+      { $set: { task: id } }
     );
     const voluenteerupdat = await User.find({ id: voluenteer });
     console.log(voluenteerupdat);
@@ -184,6 +185,40 @@ async function setVoluenteer(req, res) {
     };
   }
 }
+
+async function postSolution(req, res) {
+  try {
+    const { id, assignedTask } = req.body;
+    const { filename, path, originalname } = req.file;
+    console.log("solution is : ", filename);
+    const data = await Post.updateOne(
+      { id: assignedTask },
+      {
+        $set: {
+          solution: filename,
+          path,
+          fileOriginalName: originalname,
+        },
+      }
+    );
+    await User.updateOne(
+      { id },
+      {
+        $set: {
+          task: null,
+        },
+      }
+    );
+    return {
+      data: "Successfully Posted",
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
+
 async function setVote(req, res) {
   const { id, vote, voterid } = req.body;
   console.log(req.body);
@@ -250,6 +285,21 @@ async function otpSender(req, res) {
     };
   }
 }
+async function getAssignedTask(req, res) {
+  try {
+    const { id } = req.body;
+    const data = await User.findOne({ id });
+    const post = await Post.findOne({ id: data.task });
+    return {
+      data,
+      post,
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
 
 async function getUsers(req, res) {
   try {
@@ -290,6 +340,40 @@ async function getPost(req, res) {
     data,
   };
 }
+async function getApprovalPosts(req, res) {
+  try {
+    const { id, type } = req.body;
+    console.log(id, type);
+    if (type == "1") {
+      const data = await Post.find({
+        posterid: id,
+        approved: null,
+        solution: { $ne: null },
+      });
+      if (data[0]) {
+        return {
+          data,
+        };
+      }
+    } else {
+      const data = await Post.find({
+        voluenteer: id,
+        approved: null,
+        solution: { $ne: null },
+      });
+      console.log(data);
+      if (data[0]) {
+        return {
+          data,
+        };
+      }
+    }
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
 async function getPosts(res) {
   const data = await Post.find({});
   return {
@@ -307,4 +391,7 @@ module.exports = {
   validatePost,
   getPosterName,
   setVoluenteer,
+  postSolution,
+  getAssignedTask,
+  getApprovalPosts,
 };

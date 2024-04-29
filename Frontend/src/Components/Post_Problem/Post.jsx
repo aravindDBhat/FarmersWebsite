@@ -10,6 +10,7 @@ import { ThemeContext } from "@mui/styled-engine";
 import Header from "./Headder/headder";
 import Issue from "./Issues/issue";
 import { useNavigate } from "react-router-dom";
+import Approve from "./Approve";
 
 function Post() {
   const [tab, setTab] = useState("1");
@@ -46,7 +47,9 @@ function Post() {
             <TabPanel value="1">
               <Issue />
             </TabPanel>
-            <TabPanel value="2"></TabPanel>
+            <TabPanel value="2">
+              <Approve />
+            </TabPanel>
             <TabPanel value="3"></TabPanel>
           </TabContext>
         </Box>

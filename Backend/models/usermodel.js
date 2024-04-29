@@ -25,8 +25,7 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   task: {
-    type: Boolean,
-    required: true,
+    type: String,
   },
 });
 

@@ -15,7 +15,7 @@ function Issue() {
   const getAllIssues = async () => {
     const data = await Axios.get("http://localhost:4000/api/user/posts");
     if (Token.type == "2") {
-      setIssues(data.data.users.data.slice(0, 2));
+      setIssues(data.data.users.data.slice(0));
     } else {
       setIssues(data.data.users.data);
     }

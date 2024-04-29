@@ -3,6 +3,7 @@ const bodyparser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Dotenv = require("dotenv");
+
 const userService = require("./Routes/user.routes");
 Dotenv.config();
 const app = Express();
@@ -25,6 +26,7 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
 app.use("/api/user", userService);
 
 app.listen(4000, () => {
