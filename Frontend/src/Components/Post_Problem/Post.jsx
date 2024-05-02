@@ -11,6 +11,8 @@ import Header from "./Headder/headder";
 import Issue from "./Issues/issue";
 import { useNavigate } from "react-router-dom";
 import Approve from "./Approve";
+import Work from "./Works";
+import Rating from "./Rating";
 
 function Post() {
   const [tab, setTab] = useState("1");
@@ -50,7 +52,9 @@ function Post() {
             <TabPanel value="2">
               <Approve />
             </TabPanel>
-            <TabPanel value="3"></TabPanel>
+            <TabPanel value="3">
+              <Work />
+            </TabPanel>
           </TabContext>
         </Box>
       </div>

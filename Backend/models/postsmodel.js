@@ -45,6 +45,9 @@ const postSchema = mongoose.Schema({
   fileOriginalName: {
     type: String,
   },
+  feedback: {
+    type: String,
+  },
 });
 
 const Post = mongoose.model("post", postSchema);

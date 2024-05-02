@@ -28,6 +28,18 @@ Router.get("/", async (req, res) => {
     });
   }
 });
+Router.post("/getsolution", async (req, res) => {
+  try {
+    const msg = await userService.getsolution(req, res);
+    return res.json({
+      data: msg,
+    });
+  } catch (error) {
+    return res.json({
+      data: error.message,
+    });
+  }
+});
 Router.post("/post", async (req, res) => {
   try {
     const users = await userService.getPost(req, res);
@@ -41,6 +53,20 @@ Router.post("/post", async (req, res) => {
     });
   }
 });
+Router.post("/approvedposts", async (req, res) => {
+  try {
+    const users = await userService.getApprovedPosts(req, res);
+    return res.json({
+      users,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.json({
+      message: error.message,
+    });
+  }
+});
+
 Router.get("/posts", async (req, res) => {
   try {
     const users = await userService.getPosts(req, res);
@@ -51,6 +77,19 @@ Router.get("/posts", async (req, res) => {
     console.log(error.message);
     res.json({
       message: error.message,
+    });
+  }
+});
+Router.post("/approve", async (req, res) => {
+  try {
+    const msg = await userService.setApprove(req, res);
+    console.log(msg);
+    return res.json({
+      data: "Success",
+    });
+  } catch (error) {
+    return res.json({
+      data: error.message,
     });
   }
 });

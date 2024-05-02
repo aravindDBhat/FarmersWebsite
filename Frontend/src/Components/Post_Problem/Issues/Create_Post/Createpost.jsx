@@ -179,39 +179,43 @@ function CreatePost() {
       <h2 className="postheading">Create New Post</h2>
       {pid.type == "2" ? (
         <div className="mt-4 postSolution">
-          <form onSubmit={solutionSubmit}>
-            <h5>
-              <b>Title : </b>
-              {solutionTitle}
-            </h5>
-            <h5>
-              <b>Discription : </b>
-              {solutionDescription}
-            </h5>
-            <h5>Upload the solution :</h5>
-            <div className="uploadImage">
-              <input
-                className="image"
-                type="file"
-                accept="application/pdf"
-                onChange={handleSolution}
-                required
-              />
-              {uploaded ? (
-                <i class=" ms-5 fa-solid fa-circle-check fa-xl"></i>
+          {solutionTitle ? (
+            <form onSubmit={solutionSubmit}>
+              <h5>
+                <b>Title : </b>
+                {solutionTitle}
+              </h5>
+              <h5>
+                <b>Discription : </b>
+                {solutionDescription}
+              </h5>
+              <h5>Upload the solution :</h5>
+              <div className="uploadImage">
+                <input
+                  className="image"
+                  type="file"
+                  accept="application/pdf"
+                  onChange={handleSolution}
+                  required
+                />
+                {uploaded ? (
+                  <i class=" ms-5 fa-solid fa-circle-check fa-xl"></i>
+                ) : (
+                  <Button onClick={handlePdfUpload}>Upload</Button>
+                )}
+              </div>{" "}
+              {error && error.length > 0 ? (
+                <div class="mt-3 alert alert-warning" role="alert">
+                  {error}
+                </div>
               ) : (
-                <Button onClick={handlePdfUpload}>Upload</Button>
+                ""
               )}
-            </div>{" "}
-            {error && error.length > 0 ? (
-              <div class="mt-3 alert alert-warning" role="alert">
-                {error}
-              </div>
-            ) : (
-              ""
-            )}
-            <button type="submit">submit</button>
-          </form>
+              <button type="submit">submit</button>
+            </form>
+          ) : (
+            "You are not assigned with any task"
+          )}
         </div>
       ) : (
         <div>

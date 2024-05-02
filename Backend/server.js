@@ -9,6 +9,7 @@ Dotenv.config();
 const app = Express();
 app.use(Express.json());
 app.use(bodyparser.json());
+app.use("/files", Express.static("files"));
 app.use(
   bodyparser.urlencoded({
     extended: true,

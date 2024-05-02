@@ -120,7 +120,10 @@ async function validatePost(req, res) {
       };
     }
 
-    const Exist = await Post.findOne({ title });
+    const Exist = await Post.findOne({
+      title: title,
+      approved: { $in: ["Yes", null] },
+    });
     if (Exist) {
       return {
         StatusCode: 409,
@@ -374,11 +377,69 @@ async function getApprovalPosts(req, res) {
     };
   }
 }
+async function setApprove(req, res) {
+  try {
+    const { id, approve, rate, feedback } = req.body;
+    let data = await Post.updateOne(
+      { id },
+      {
+        $set: {
+          approved: approve,
+          rate,
+          feedback,
+        },
+      }
+    );
+    data = await Post.find({ id });
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+}
+async function getApprovedPosts(req, res) {
+  try {
+    const { title } = req.body;
+    console.log("title is ", title);
+    if (title) {
+      const data = await Post.find({ title: title, approved: { $ne: null } });
+      return {
+        data,
+      };
+    }
+    const data = await Post.find({ approved: { $ne: null } });
+    return {
+      data,
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
 async function getPosts(res) {
-  const data = await Post.find({});
-  return {
-    data,
-  };
+  try {
+    const data = await Post.find({ voluenteer: null }).sort({ vote: -1 });
+    return {
+      data,
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
+}
+async function getsolution(req, res) {
+  const { id } = req.body;
+  try {
+    const data = await Post.findOne({ id });
+    return {
+      data: data.solution,
+    };
+  } catch (error) {
+    return {
+      data: error.message,
+    };
+  }
 }
 
 module.exports = {
@@ -394,4 +455,7 @@ module.exports = {
   postSolution,
   getAssignedTask,
   getApprovalPosts,
+  setApprove,
+  getApprovedPosts,
+  getsolution,
 };

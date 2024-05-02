@@ -1,0 +1,134 @@
+import { useEffect, useState } from "react";
+import { FaStar } from "react-icons/fa";
+import axios from "axios";
+
+const colors = {
+  orange: "#FFBA5A",
+  grey: "#a9a9a9",
+};
+
+function Rating() {
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const [feedback, setFeedback] = useState();
+  const [error, setError] = useState();
+  let Approvedata = localStorage.getItem("data");
+  Approvedata = JSON.parse(Approvedata);
+  const stars = Array(5).fill(0);
+  const handleFeedback = (e) => {
+    let fb = e.target.value;
+    fb = fb.slice(0, 1).toUpperCase() + fb.slice(1);
+    setFeedback(fb);
+  };
+  const handleClick = (value) => {
+    setCurrentValue(value);
+  };
+
+  const handleMouseOver = (newHoverValue) => {
+    setHoverValue(newHoverValue);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined);
+  };
+  const handleSubmit = async () => {
+    if (!currentValue) {
+      setError("Please Rate the Solution");
+      return;
+    }
+    if (!feedback) {
+      setError("Please Give Feedback");
+      return;
+    }
+    const payload = {
+      id: Approvedata.id,
+      approve: Approvedata.approve,
+      rate: currentValue,
+      feedback: feedback,
+    };
+    const data = await axios.post(
+      "http://localhost:4000/api/user/Approve",
+      payload
+    );
+    console.log(data.data.data);
+    setError(data.data.data);
+  };
+  useEffect(() => {
+    setError();
+  }, []);
+
+  return (
+    <div style={styles.container}>
+      <h2>Post Ratings</h2>
+      <div style={styles.stars}>
+        {stars.map((_, index) => {
+          return (
+            <FaStar
+              key={index}
+              size={24}
+              onClick={() => handleClick(index + 1)}
+              onMouseOver={() => handleMouseOver(index + 1)}
+              onMouseLeave={handleMouseLeave}
+              color={
+                (hoverValue || currentValue) > index
+                  ? colors.orange
+                  : colors.grey
+              }
+              style={{
+                marginRight: 10,
+                cursor: "pointer",
+              }}
+            />
+          );
+        })}
+      </div>
+      <textarea
+        placeholder="Feedback on Solution"
+        onChange={handleFeedback}
+        style={styles.textarea}
+      />
+      {console.log("error is ", error)}
+      {error && error.length > 0 ? (
+        <div class="w-100 alert alert-warning" role="alert">
+          {error}
+        </div>
+      ) : (
+        ""
+      )}
+      <button
+        className="btn btn-primary "
+        onClick={handleSubmit}
+        style={styles.button}
+      >
+        Submit
+      </button>
+    </div>
+  );
+}
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  stars: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  textarea: {
+    border: "1px solid #a9a9a9",
+    borderRadius: 5,
+    padding: 10,
+    margin: "20px 0",
+    minHeight: 100,
+    width: 300,
+  },
+  button: {
+    border: "1px solid #a9a9a9",
+    borderRadius: 5,
+    width: 300,
+    padding: 10,
+  },
+};
+export default Rating;

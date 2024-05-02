@@ -9,6 +9,7 @@ import DiseaseDetection from "./Disease-Detection/DiseaseDetection";
 import LandingPage from "./LandingPage/LandingPage";
 import Post from "./Post_Problem/Post";
 import CreatePost from "./Post_Problem/Issues/Create_Post/Createpost";
+import Rating from "./Post_Problem/Rating";
 function NavigatePage() {
   return (
     <BrowserRouter>
@@ -21,6 +22,7 @@ function NavigatePage() {
         <Route path="/diseaseDetection" element={<DiseaseDetection />} />
         <Route path="/post" element={<Post />} />
         <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/rating" element={<Rating />} />
       </Routes>
     </BrowserRouter>
   );

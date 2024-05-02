@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import img from "./Issues/leaf.jpg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 function Approve() {
   const [issues, setIssue] = useState(null);
   const [data, setData] = useState();
@@ -10,6 +12,8 @@ function Approve() {
   const [poster, setPoster] = useState();
   const [voluenteer, setVoluenteer] = useState();
   const [voluenteerEmail, setVoluenteerEmail] = useState();
+  const navigate = useNavigate();
+
   let Token = localStorage.getItem("Token");
   Token = JSON.parse(Token);
   const getApprovalData = async () => {
@@ -27,6 +31,32 @@ function Approve() {
 
       await setIssue(data.data.msg.data);
     }
+  };
+  const viewSolution = async (e) => {
+    try {
+      const payload = {
+        id: e.id,
+      };
+      const data = await axios.post(
+        "http://localhost:4000/api/user/getsolution",
+        payload
+      );
+      console.log("333333333", data.data.data.data);
+      window.open(`http://localhost:4000/files/${data.data.data.data}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleApprove = async (e, approve) => {
+    try {
+      const payload = {
+        id: e.id,
+        approve,
+      };
+      localStorage.setItem("data", JSON.stringify(payload));
+      navigate("/rating");
+    } catch (error) {}
   };
 
   const getcardData = async (d, i) => {
@@ -128,17 +158,33 @@ function Approve() {
                           <div className="cardfooter">
                             {Token.type && Token.type == "1" ? (
                               <div>
-                                <Button variant="primary"> Solution</Button>
+                                <Button
+                                  onClick={() => {
+                                    viewSolution(issue);
+                                  }}
+                                  variant="primary"
+                                >
+                                  {" "}
+                                  Solution
+                                </Button>
                               </div>
                             ) : (
-                              <Button variant="primary"> Solution</Button>
+                              <Button
+                                onClick={() => {
+                                  viewSolution(issue);
+                                }}
+                                variant="primary"
+                              >
+                                {" "}
+                                Solution
+                              </Button>
                             )}
                             {Token.type && Token.type == "1" ? (
                               <div className="approvebttons">
                                 <Button
-                                  // onClick={() => {
-                                  //   getVoteData(issue);
-                                  // }}
+                                  onClick={() => {
+                                    handleApprove(issue, "Yes");
+                                  }}
                                   variant="success"
                                 >
                                   {" "}
@@ -146,9 +192,9 @@ function Approve() {
                                 </Button>
                                 <Button
                                   className="ms-3"
-                                  // onClick={() => {
-                                  //   getVoteData(issue);
-                                  // }}
+                                  onClick={() => {
+                                    handleApprove(issue, "No");
+                                  }}
                                   variant="danger"
                                 >
                                   {" "}
