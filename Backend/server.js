@@ -30,6 +30,6 @@ mongoose
 
 app.use("/api/user", userService);
 
-app.listen(4000, () => {
-  console.log("server running on port 3000");
+app.listen(4000 || PORT, () => {
+  console.log("server running on port 4000");
 });

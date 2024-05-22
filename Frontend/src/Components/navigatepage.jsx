@@ -10,6 +10,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import Post from "./Post_Problem/Post";
 import CreatePost from "./Post_Problem/Issues/Create_Post/Createpost";
 import Rating from "./Post_Problem/Rating";
+import Ecommerce from "./Ecommerce/Ecommerce";
 function NavigatePage() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function NavigatePage() {
         <Route path="/post" element={<Post />} />
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="/rating" element={<Rating />} />
+        <Route path="/ecommerce" element={<Ecommerce />} />
       </Routes>
     </BrowserRouter>
   );
