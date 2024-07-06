@@ -13,7 +13,9 @@ function Issue() {
     setSearch(e.target.value);
   };
   const getAllIssues = async () => {
-    const data = await Axios.get("http://localhost:4000/api/user/posts");
+    const data = await Axios.get(
+      "https://farmerwebsitebackend.onrender.com/api/user/posts"
+    );
     if (Token.type == "2") {
       setIssues(data.data.users.data.slice(0));
     } else {
@@ -27,7 +29,10 @@ function Issue() {
     };
     if (search) {
       console.log("searching : ");
-      const data = await Axios.post("http://localhost:4000/api/user/post", p);
+      const data = await Axios.post(
+        "https://farmerwebsitebackend.onrender.com/api/user/post",
+        p
+      );
       setIssues(data.data.users.data);
       console.log("post method", data.data.users.data);
     } else {

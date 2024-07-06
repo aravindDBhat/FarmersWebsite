@@ -27,7 +27,7 @@ function CreatePost() {
       id: pid.id,
     };
     const data = await axios.post(
-      "http://localhost:4000/api/user/getAssignedTask",
+      "https://farmerwebsitebackend.onrender.com/api/user/getAssignedTask",
       payload
     );
     console.log("all post data :", data.data.msg.data);
@@ -104,7 +104,7 @@ function CreatePost() {
       formData.append("assignedTask", assignedTask);
       formData.append("id", pid.id);
       const data = await axios.post(
-        "http://localhost:4000/api/user/postSolution",
+        "https://farmerwebsitebackend.onrender.com/api/user/postSolution",
         formData,
         {
           headers: {
@@ -136,7 +136,7 @@ function CreatePost() {
         },
       };
       const data = await axios.post(
-        "http://localhost:4000/api/user/createpost",
+        "https://farmerwebsitebackend.onrender.com/api/user/createpost",
         payload,
         config
       );

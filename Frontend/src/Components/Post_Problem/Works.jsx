@@ -29,7 +29,7 @@ function Work() {
         title: searchs,
       };
       const data = await axios.post(
-        "http://localhost:4000/api/user/approvedposts",
+        "https://farmerwebsitebackend.onrender.com/api/user/approvedposts",
         payload
       );
       console.log("aaaaaaaa", data);
@@ -46,10 +46,12 @@ function Work() {
         id: e.id,
       };
       const data = await axios.post(
-        "http://localhost:4000/api/user/getsolution",
+        "https://farmerwebsitebackend.onrender.com/api/user/getsolution",
         payload
       );
-      window.open(`http://localhost:4000/files/${data.data.data.data}`);
+      window.open(
+        `https://farmerwebsitebackend.onrender.com/files/${data.data.data.data}`
+      );
     } catch (error) {}
   };
 
@@ -59,7 +61,7 @@ function Work() {
       voluenteer: d.voluenteer,
     };
     const posterdata = await axios.post(
-      "http://localhost:4000/api/user/poster",
+      "https://farmerwebsitebackend.onrender.com/api/user/poster",
       payload
     );
     if (d.voluenteer) {

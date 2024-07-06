@@ -22,7 +22,7 @@ function Approve() {
       type: Token.type,
     };
     const data = await axios.post(
-      "http://localhost:4000/api/user/Approvalposts",
+      "https://farmerwebsitebackend.onrender.com/api/user/Approvalposts",
       Payload
     );
     console.log(data.data.msg);
@@ -38,11 +38,13 @@ function Approve() {
         id: e.id,
       };
       const data = await axios.post(
-        "http://localhost:4000/api/user/getsolution",
+        "https://farmerwebsitebackend.onrender.com/api/user/getsolution",
         payload
       );
       console.log("333333333", data.data.data.data);
-      window.open(`http://localhost:4000/files/${data.data.data.data}`);
+      window.open(
+        `https://farmerwebsitebackend.onrender.com/files/${data.data.data.data}`
+      );
     } catch (error) {
       console.log(error.message);
     }
@@ -65,7 +67,7 @@ function Approve() {
       voluenteer: d.voluenteer,
     };
     const posterdata = await axios.post(
-      "http://localhost:4000/api/user/poster",
+      "https://farmerwebsitebackend.onrender.com/api/user/poster",
       payload
     );
     if (d.voluenteer) {

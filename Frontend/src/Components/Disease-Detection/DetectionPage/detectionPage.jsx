@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const Dotenv = require("dotenv");
-Dotenv.config();
+
 function DetectionPage() {
   const [image, setImage] = useState(null);
   const [error, setError] = useState();

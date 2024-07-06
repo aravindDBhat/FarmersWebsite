@@ -30,7 +30,7 @@ function OTP(Props) {
         },
       };
       data = await axios.post(
-        "http://localhost:4000/api/user/EmailVerification",
+        "https://farmerwebsitebackend.onrender.com/api/user/EmailVerification",
         payload,
         config
       );

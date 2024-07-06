@@ -24,7 +24,7 @@ function Body(props) {
       voterid: Token.id,
     };
     const votedata = await axios.post(
-      "http://localhost:4000/api/user/vote",
+      "https://farmerwebsitebackend.onrender.com/api/user/vote",
       payload
     );
     console.log("Vote data : ", votedata.data.msg);
@@ -36,7 +36,7 @@ function Body(props) {
       voluenteer: Token.id,
     };
     const data = await axios.post(
-      "http://localhost:4000/api/user/setVoluenteer",
+      "https://farmerwebsitebackend.onrender.com/api/user/setVoluenteer",
       payload
     );
     console.log("Voluenteer data : ", data.data.msg);
@@ -49,7 +49,7 @@ function Body(props) {
       voluenteer: d.voluenteer,
     };
     const posterdata = await axios.post(
-      "http://localhost:4000/api/user/poster",
+      "https://farmerwebsitebackend.onrender.com/api/user/poster",
       payload
     );
     if (d.voluenteer) {

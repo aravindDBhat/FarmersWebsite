@@ -66,7 +66,7 @@ function Password(Props) {
 
     try {
       data = await axios.post(
-        "http://localhost:4000/api/user/signup",
+        "https://farmerwebsitebackend.onrender.com/api/user/signup",
         userInfo,
         config
       );

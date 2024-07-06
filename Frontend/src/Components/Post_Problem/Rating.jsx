@@ -47,7 +47,7 @@ function Rating() {
       feedback: feedback,
     };
     const data = await axios.post(
-      "http://localhost:4000/api/user/Approve",
+      "https://farmerwebsitebackend.onrender.com/api/user/Approve",
       payload
     );
     console.log(data.data.data);
