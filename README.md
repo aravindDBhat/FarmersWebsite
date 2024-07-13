@@ -44,7 +44,7 @@ cp sample-env .env (create mogodb account and create db and save that as showed 
 node server.js
 ```
 
-3. Start Frontend
+4. Start Frontend
 
 ```bash
 cd frontend
@@ -53,10 +53,15 @@ npm install
 cp sample-env .env
 npm start
 ```
+5. ResNet Model
+```bash
+Run ResNet_Model.ipynb file in google colab and download the pretrained model.
+set up the path of pretrained model in main.py.
+install all the packages which is mentioned in requirements.txt.
+run the main.py file.
+```
 
-Application runs from localhost:3000.
 
 # How it works
 
-- [Demo](https://www.loom.com/share/e8e20b94c8804a84ae539bc4a72934e1?sid=5a28f808-f0be-49dd-b027-254877303760)
-- [Live](https://chatapp-065s.onrender.com)
+- [Live](https://farmers-website-rbwm.vercel.app/post)
