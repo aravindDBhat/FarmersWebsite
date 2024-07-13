@@ -64,4 +64,4 @@ run the main.py file.
 
 # How it works
 
-- [Live](https://farmers-website-rbwm.vercel.app/post)
+- [Live](https://farmers-website-rbwm.vercel.app)
