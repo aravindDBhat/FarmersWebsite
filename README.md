@@ -4,9 +4,7 @@
 - Features
 - Technologies Used
 - Installation
-- Usage
-- Contributing
-- License
+- How it works
 # Features
 - Plant Disease Prediction: Farmers can upload images of plant leaves to predict diseases using the ResNet model.
 - Issue Posting: Farmers can post their problems or issues they are facing.
